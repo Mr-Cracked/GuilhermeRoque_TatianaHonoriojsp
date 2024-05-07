@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ include file="cabecalho.jsp" page [	language="java"	]%>  
-<%@if( (session.getAttribute("tipo_utilizador") != null) && Integer.parseInt(session.getAttribute('tipo_utilizador').toString()) == 3) %>  
+<%
+    if ((session.getAttribute("tipo_utilizador") != null) && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
+%>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
-   
+    <%@ include file="cabecalho.jsp" %>  
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 400px;">
             <div class="card-body">
@@ -18,25 +19,26 @@
                 Insira as suas informações
                 <br>
                 <form id="form1" name="form1" method="post" action="registar.jsp">
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="nivelacesso">Nível de Acesso:</label>
                         <select class="form-control" name="nivelacesso">
                             <%
-                            // Opções do nível de acesso
-                            $opcoesNivelAcesso = array(
-                                "-1" => "Eliminado",
-                                "0" => "Por aceitar",
-                                "1" => "Aluno",
-                                "2" => "Docente",
-                                "3" => "Administrador"
-                            );
-
-                            // Itera sobre as opções e as exibe
-                            foreach ($opcoesNivelAcesso as $valor => $descricao) {
-                                $selected = ($valor == 0) ? "selected" : "";
-                                echo "<option value=\"$valor\" $selected>$descricao</option>";
-                            }
-                            ?>
+                                // Definir opções do nível de acesso em um array
+                                String[][] opcoesNivelAcesso = {
+                                    {"-1", "Eliminado"},
+                                    {"0", "Por aceitar"},
+                                    {"1", "Aluno"},
+                                    {"2", "Docente"},
+                                    {"3", "Administrador"}
+                                };
+                            %>
+                            <% for (int i = 0; i < opcoesNivelAcesso.length; i++) {
+                                String valor = opcoesNivelAcesso[i][0];
+                                String descricao = opcoesNivelAcesso[i][1];
+                                String selected = (valor.equals("0")) ? "selected" : ""; // Definir "Por aceitar" como selecionado por padrão
+                            %>
+                            <option value="<%= valor %>" <%= selected %>><%= descricao %></option>
+                            <% } %>
                         </select>
                     </div>
                     <br>  
@@ -75,10 +77,10 @@
             </div>
         </div>
     </div>
-</form>
 </body>
 </html>
-<% else: 
-    header("Location:Erro.jsp");
-?>
-<% endif ?>
+<%
+    } else {
+        response.sendRedirect("Erro.jsp");
+    }
+%>

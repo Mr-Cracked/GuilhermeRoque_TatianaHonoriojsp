@@ -5,6 +5,7 @@
 <%@ include file="../basedados/basedados.h" %>
 
 <% 
+    if(session.getAttribute("tipo_utilizador") == null){
 
     String nome = request.getParameter("username");
     String password = request.getParameter("password"); // A senha ainda não está encriptada
@@ -58,4 +59,7 @@
 <%
         }
     }
+}else{
+    response.sendRedirect("Erro.jsp");
+}
 %>
