@@ -12,7 +12,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
     String morada = "";
     String email = "";
     String telemovel = "";
-    Integer tipoUtilizador = 0;
+    Integer tipoUser = 0;
     Integer id_utilizador = 0;
 
     String ID = request.getParameter("id_utilizador");
@@ -28,7 +28,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
         morada = result.getString("morada");
         email = result.getString("email");
         telemovel = result.getString("telemovel");
-        tipoUtilizador = result.getInt("tipo_utilizador");
+        tipoUser = result.getInt("tipo_utilizador");
         id_utilizador = result.getInt("id_utilizador");
     } else {
         response.sendRedirect("Erro.jsp");
@@ -66,7 +66,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                             for (Map.Entry<Integer, String> entry : opcoesNivelAcesso.entrySet()) {
                                 Integer valor = entry.getKey();
                                 String descricao = entry.getValue();
-                                String selected = (valor == tipoUtilizador) ? "selected" : "";
+                                String selected = (valor == tipoUser) ? "selected" : "";
                             %>
                             <option value="<%= valor %>" <%= selected %>><%= descricao %></option>
                             <%
