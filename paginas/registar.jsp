@@ -8,7 +8,7 @@
     Statement stmt = null;
     ResultSet result = null;
 
-        if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
+        //if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
            
             String nivel = request.getParameter("nivelacesso");
             String nome = request.getParameter("username");
@@ -73,7 +73,7 @@
                     }
                 }
             }
-        } else {
+      /*  } else {
             response.sendRedirect("Erro.jsp");
-        }
+        }*/
 %>
