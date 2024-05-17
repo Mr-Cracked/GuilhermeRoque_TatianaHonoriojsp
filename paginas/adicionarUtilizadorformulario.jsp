@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="cabecalho.jsp" %>
 <!DOCTYPE html>
 <%
     if ((session.getAttribute("tipo_utilizador") != null) && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {

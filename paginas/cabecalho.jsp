@@ -20,39 +20,7 @@
                     if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) > 0) {
                             tipoUtilizador = Integer.parseInt(session.getAttribute("tipo_utilizador").toString());
                     }
-                       
-                        
-                        
                             switch (tipoUtilizador) { 
-                            case 1:
-                                %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="perfil.jsp">Perfil</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="cursos.jsp">Cursos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="inscricoes.jsp">Inscrições</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="informacoes.jsp">Informações</a>
-                                </li>
-                                <%      
-                                break;
-                            case 2:
-                                %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="cursos.jsp">Cursos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="perfil.jsp">Perfil</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="informacoes.jsp">Informações</a>
-                                </li>
-                                <%      
-                                break;
                             case 3:
                                 %>
                                 <li class="nav-item">

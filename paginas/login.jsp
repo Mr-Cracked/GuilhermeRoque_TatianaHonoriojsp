@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.security.MessageDigest" %>
 <%@ page import="java.math.*" %>
-
+<%@ include file="Encriptar.jsp" %>
 <%@ include file="../basedados/basedados.h" %>
 
 <% 
@@ -11,12 +11,11 @@
     String nome = request.getParameter("username");
     String password = request.getParameter("password"); // A senha ainda não está encriptada
 
-    
-   
+    String pass_encriptada = Encriptar(password);
 
 
     Statement stmt = conn.createStatement();
-    String sql = "SELECT * FROM utilizador WHERE nome='" + nome + "' AND password='" + password + "'";
+    String sql = "SELECT * FROM utilizador WHERE nome='" + nome + "' AND password='" + pass_encriptada + "'";
     ResultSet rs = stmt.executeQuery(sql);
 
     if (!rs.next()) {
@@ -38,7 +37,7 @@
             session.setAttribute("email", rs.getString("email"));
             session.setAttribute("telemovel", rs.getString("telemovel"));
             session.setAttribute("morada", rs.getString("morada"));
-            session.setAttribute("password", rs.getString("password"));
+            session.setAttribute("password", pass_encriptada);
 
 
             response.sendRedirect("perfil.jsp");

@@ -19,7 +19,7 @@
                 <label for="Erro">Parece que houve um erro :( </label> <br> 
                 <label for="Erro">Por favor volte à página inicial</label> <br> 
                 <%
-                if(!empty(session.getAttribute("tipo_utilizador")) && Integer.toInt(session.getAttribute("tipo_utilizador").toString) > 0){
+                if(Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) > 0){
                     %>
                     <a type="button" class="btn btn-primary" href="perfil.php">Voltar</button></a>
                     <%

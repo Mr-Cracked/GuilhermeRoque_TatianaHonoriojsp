@@ -54,8 +54,8 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
             
             int result = 0;
             if (existepass) {
-                // Atualizar utilizador 
-                 pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, password=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
+                
+                pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, password=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
                 pstmt.setString(1, nome);
                 pstmt.setString(2, senha_encriptada);
                 pstmt.setString(3, email);
@@ -65,7 +65,8 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                 pstmt.setInt(7, id_utilizador);
                 result = pstmt.executeUpdate();
             }else {
-                 pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
+
+                pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
                 pstmt.setString(1, nome);
                 pstmt.setString(2, email);
                 pstmt.setString(3, telemovel);
@@ -75,7 +76,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                 result = pstmt.executeUpdate();
             }
                 
-                // Verificar se a atualização foi bem-sucedida
+                
                 if (result > 0) {
                     out.println("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
                     out.println("<div class=\"alert alert-dismissible alert-success\">");
