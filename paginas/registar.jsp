@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../basedados/basedados.h" %>
+<%@ include file="Encriptar.jsp" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.security.*" %>
 <%@ page import="java.math.*" %>
@@ -16,11 +17,12 @@
             Integer telemovel = Integer.parseInt(request.getParameter("telemovel"));
             String morada = request.getParameter("morada");
 
+            String password_encriptada = Encriptar(password);
+
             
             
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM utilizador WHERE nome='" + nome + "'";
-            result = stmt.executeQuery(sql);
+            result = stmt.executeQuery("SELECT * FROM utilizador WHERE nome='" + nome + "'");
 
             
             if (result.next()) {
@@ -37,9 +39,9 @@
                 }
             } else {
                 if (nivel == null || nivel.isEmpty()) {
-                    
-                    sql = "INSERT INTO utilizador (nome, password, email, telemovel, morada) VALUES ('" + nome + "', '" + password + "', '" + email + "', '" + telemovel + "', '" + morada + "')";
-                    int rowsAffected = stmt.executeUpdate(sql);
+
+                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (nome, password, email, telemovel, morada) 
+                    VALUES ('" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                     
                     if (rowsAffected > 0) {
@@ -55,8 +57,8 @@
                     }
                 } else {
                     
-                    sql = "INSERT INTO utilizador (tipo_utilizador, nome, password, email, telemovel, morada) VALUES ('" + nivel + "', '" + nome + "', '" + password + "', '" + email + "', '" + telemovel + "', '" + morada + "')";
-                    int rowsAffected = stmt.executeUpdate(sql);
+                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (tipo_utilizador, nome, password, email, telemovel, morada) 
+                    VALUES ('" + nivel + "', '" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                     
                     if (rowsAffected > 0) {

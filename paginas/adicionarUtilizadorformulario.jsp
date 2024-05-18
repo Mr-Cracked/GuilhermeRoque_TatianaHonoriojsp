@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
-    <%@ include file="cabecalho.jsp" %>  
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 400px;">
             <div class="card-body">

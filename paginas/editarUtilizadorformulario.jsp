@@ -5,34 +5,25 @@
 <%@ include file="../basedados/basedados.h" %>
 <%
 if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
+
+
     Statement stmt = null;
-    ResultSet result = null;
+    ResultSet rs = null;
 
-    String nome = "";
-    String morada = "";
-    String email = "";
-    String telemovel = "";
-    Integer tipoUser = 0;
-    Integer id_utilizador = 0;
+    stmt = conn.createStatement();
 
-    String ID = request.getParameter("id_utilizador");
-    if (ID != null) {
-        stmt = conn.createStatement();
-        result = stmt.executeQuery("SELECT * FROM utilizador WHERE id_utilizador='" + ID + "'");
-    } else {
-        response.sendRedirect("Erro.jsp");
-    }
+    String sql = "SELECT * FROM utilizador WHERE id_utilizador ='" + request.getParameter("id") + "'";
+    rs = stmt.executeQuery(sql);
 
-    if (result != null && result.next()) {
-        nome = result.getString("nome");
-        morada = result.getString("morada");
-        email = result.getString("email");
-        telemovel = result.getString("telemovel");
-        tipoUser = result.getInt("tipo_utilizador");
-        id_utilizador = result.getInt("id_utilizador");
-    } else {
-        response.sendRedirect("Erro.jsp");
-    }
+    rs.next();
+    
+    String nome = rs.getString("nome");
+    String morada = rs.getString("morada");
+    String email = rs.getString("email");
+    Integer telemovel = rs.getInt("telemovel");
+    Integer tipoUser = rs.getInt("tipo_utilizador");
+    Integer id_utilizador = rs.getInt("id_utilizador");
+    
 %>
 
 <!DOCTYPE html>
@@ -54,25 +45,26 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                     <div class="form-group">
                         <label for="nivelacesso">Nível de Acesso:</label>
                         <select class="form-control" name="nivelacesso">
-                            <%-- Opções do nível de acesso --%>
                             <%
-                            Map<Integer, String> opcoesNivelAcesso = new LinkedHashMap<>();
-                            opcoesNivelAcesso.put(-1, "Eliminado");
-                            opcoesNivelAcesso.put(0, "Por aceitar");
-                            opcoesNivelAcesso.put(1, "Aluno");
-                            opcoesNivelAcesso.put(2, "Docente");
-                            opcoesNivelAcesso.put(3, "Administrador");
+                           String[][] niveisAcesso = {
+                                {"-1", "Eliminado"},
+                                {"0", "Por aceitar"},
+                                {"1", "Aluno"},
+                                {"2", "Docente"},
+                                {"3", "Administrador"}
+                            };
 
-                            for (Map.Entry<Integer, String> entry : opcoesNivelAcesso.entrySet()) {
-                                Integer valor = entry.getKey();
-                                String descricao = entry.getValue();
+                            for (String[] nivel : niveisAcesso) {
+                                int valor = Integer.parseInt(nivel[0]);
+                                String descricao = nivel[1];
                                 String selected = (valor == tipoUser) ? "selected" : "";
                             %>
-                            <option value="<%= valor %>" <%= selected %>><%= descricao %></option>
+                                <option value="<%= valor %>" <%= selected %>><%= descricao %></option>
                             <%
                             }
                             %>
                         </select>
+
                     </div>
                     <br>
                     <div class="form-group">

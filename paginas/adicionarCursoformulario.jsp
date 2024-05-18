@@ -47,6 +47,11 @@
                         <input type="date" class="form-control" name="datafim" placeholder="Insira data de Termino" required>
                     </div>
                     <br>
+                    <div class="form-group">
+                        <label for="metodo">Método de Seleção:</label>
+                        <input type="text" class="form-control" name="metodo" placeholder="Insira o método de seleção" required>
+                    </div>
+                    <br>
                     <div id="docentesSelectContainer">
                         <%
                             Statement stmt = conn.createStatement();
@@ -54,7 +59,7 @@
                             ResultSet rs = stmt.executeQuery(sql);
                             while (rs.next()) {
                                 out.println("<div class='form-check'>");
-                                out.println("<input class='form-check-input' type='checkbox' name='docentes[]' value='" + rs.getInt("id_utilizador") + "' id='docente" + rs.getString("id_utilizador") + "'>");
+                                out.println("<input class='form-check-input' type='checkbox' name='docentes' value='" + rs.getInt("id_utilizador") + "' id='docente" + rs.getString("id_utilizador") + "'>");
                                 out.println("<label class='form-check-label' for='docente" + rs.getInt("id_utilizador") + "'>" + rs.getString("nome") + "</label>");
                                 out.println("</div>");
                             }

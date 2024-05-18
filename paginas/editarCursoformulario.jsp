@@ -17,15 +17,19 @@
     <%
         Statement stmt = null;
         ResultSet rs = null;
-            stmt = conn.createStatement();
-            String sql = "SELECT * FROM curso WHERE id_curso='" + request.getParameter("id") + "'";
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            String idCurso = rs.getString("id_curso");
+
+        stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM curso WHERE id_curso='" + request.getParameter("id") + "'";
+        rs = stmt.executeQuery(sql);
+
+        rs.next();
+
+        String idCurso = rs.getString("id_curso");
     %>
 
     <div class="container d-flex justify-content-center align-items-center" style="height: 110vh;">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded w-75 align-items-center ">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded w-75 ">
             <div class="card-body w-100">
                 <h4 class="card-title text-center">Editar Curso</h4>
                 <br>
@@ -79,12 +83,11 @@
                             while (Result.next()) {
                         %>
                             <div class='form-check'>
-                                <input class='form-check-input' type='checkbox' name='docentes[]' value='<%= Result.getString("id_utilizador") %>' id='docente<%= Result.getString("id_utilizador") %>' checked>
+                                <input class='form-check-input' type='checkbox' name='docentes' value='<%= Result.getString("id_utilizador") %>' id='docente<%= Result.getString("id_utilizador") %>' checked>
                                 <label class='form-check-label' for='docente<%= Result.getString("id_utilizador") %>'><%= Result.getString("nome") %></label>
                             </div>
                         <%
                             }
-                            Result.close();
 
                             sql = "SELECT u.id_utilizador, u.nome " +
                                           "FROM utilizador u " +
@@ -94,12 +97,11 @@
                             while (Result.next()) {
                         %>
                             <div class='form-check'>
-                                <input class='form-check-input' type='checkbox' name='docentes[]' value='<%= Result.getString("id_utilizador") %>' id='docente<%= Result.getString("id_utilizador") %>'>
+                                <input class='form-check-input' type='checkbox' name='docentes' value='<%= Result.getString("id_utilizador") %>' id='docente<%= Result.getString("id_utilizador") %>'>
                                 <label class='form-check-label' for='docente<%= Result.getString("id_utilizador") %>'><%= Result.getString("nome") %></label>
                             </div>
                         <%
                             }
-                            Result.close();
                         %>
                     </div>
                     <br>

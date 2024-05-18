@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../basedados/basedados.h" %>
+<%@ include file="Encriptar.jsp" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="java.util.*" %>
 
 <%
-// Obter os dados do formulário
+
 if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
     boolean existepass = false;
     String senha_encriptada = "";
@@ -33,7 +34,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
          
         if (request.getParameter("password") != null && !request.getParameter("password").isEmpty()) {
             existepass = true;
-            senha_encriptada = request.getParameter("password");
+            senha_encriptada = Encriptar(request.getParameter("password"));
         }
 
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM utilizador WHERE nome = ?");

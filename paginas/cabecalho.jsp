@@ -16,13 +16,8 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav nav nav-pills">
                     <% 
-                    int tipoUtilizador = 0;
-                    if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) > 0) {
-                            tipoUtilizador = Integer.parseInt(session.getAttribute("tipo_utilizador").toString());
-                    }
-                            switch (tipoUtilizador) { 
-                            case 3:
-                                %>
+                    if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
+                         %>
                                 <li class="nav-item">
                                     <a class="nav-link" href="perfil.jsp">Perfil</a>
                                 </li>
@@ -31,15 +26,16 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="cursos.jsp">Cursos</a>
                                         <a class="dropdown-item" href="utilizadores.jsp">Utilizadores</a>
+                                        <a class="dropdown-item" href="gerirInscricoes.jsp">Inscrições</a>
+                                        
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link" href="informacoes.jsp">Informações</a>
+                                    <a class="nav-link" href="informacoes.jsp">Informações</a>
                                 </li>
                                 <%      
-                                break;
-                                default:
-                                    %>
+                    }else{
+                        %>
                                     <li class="nav-item">
                                             <a class="nav-link" href="cursos.jsp">Cursos</a>
                                         </li>
@@ -47,8 +43,7 @@
                                         <a class="nav-link" href="informacoes.jsp">Informações</a>
                                     </li>
                                     <%
-                                break;
-                            }
+                    }
                     %>
                 </ul>
                 <ul class="navbar-nav">
