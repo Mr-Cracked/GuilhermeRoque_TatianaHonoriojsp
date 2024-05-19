@@ -17,23 +17,36 @@
                 <ul class="navbar-nav nav nav-pills">
                     <% 
                     if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
+                        %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="perfil.jsp">Perfil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gerir</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="cursos.jsp">Cursos</a>
+                                    <a class="dropdown-item" href="utilizadores.jsp">Utilizadores</a>
+                                    <a class="dropdown-item" href="gerirInscricoes.jsp">Inscrições</a>
+                                    
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="informacoes.jsp">Informações</a>
+                            </li>
+                        <%      
+                    }else if (session.getAttribute("tipo_utilizador") != null) {
                          %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="perfil.jsp">Perfil</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gerir</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="cursos.jsp">Cursos</a>
-                                        <a class="dropdown-item" href="utilizadores.jsp">Utilizadores</a>
-                                        <a class="dropdown-item" href="gerirInscricoes.jsp">Inscrições</a>
-                                        
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="informacoes.jsp">Informações</a>
-                                </li>
-                                <%      
+                            <li class="nav-item">
+                                <a class="nav-link" href="cursos.jsp">Cursos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="informacoes.jsp">Informações</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="perfil.jsp">Perfil</a>
+                            </li>
+                         <%
+                    
                     }else{
                         %>
                                     <li class="nav-item">

@@ -40,8 +40,7 @@
             } else {
                 if (nivel == null || nivel.isEmpty()) {
 
-                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (nome, password, email, telemovel, morada) 
-                    VALUES ('" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
+                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (nome, password, email, telemovel, morada) VALUES ('" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                     
                     if (rowsAffected > 0) {
@@ -57,8 +56,7 @@
                     }
                 } else {
                     
-                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (tipo_utilizador, nome, password, email, telemovel, morada) 
-                    VALUES ('" + nivel + "', '" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
+                    int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (tipo_utilizador, nome, password, email, telemovel, morada) VALUES ('" + nivel + "', '" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                     
                     if (rowsAffected > 0) {

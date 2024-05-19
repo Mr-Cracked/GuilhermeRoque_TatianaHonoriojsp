@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Maio-2024 às 00:23
+-- Tempo de geração: 19-Maio-2024 às 14:52
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -40,6 +40,14 @@ CREATE TABLE `curso` (
   `metodo_selecao` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `vagas`, `vagas_preenchidas`, `data_inicio`, `data_fim`, `metodo_selecao`) VALUES
+(36, 'dsadsad', 'dsada', 21, 0, '2024-04-28', '2024-05-25', 'dasdadas'),
+(37, 'Teste123', 'dasdas', 312, 0, '2024-05-01', '2024-05-25', 'dsada');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +61,13 @@ CREATE TABLE `inscricao` (
   `estado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `inscricao`
+--
+
+INSERT INTO `inscricao` (`id_utilizador`, `id_curso`, `descricao`, `estado`) VALUES
+(2, 36, 'fsdfs', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +78,15 @@ CREATE TABLE `leciona` (
   `id_utilizador` int(40) NOT NULL,
   `id_curso` int(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `leciona`
+--
+
+INSERT INTO `leciona` (`id_utilizador`, `id_curso`) VALUES
+(18, 36),
+(19, 36),
+(20, 37);
 
 -- --------------------------------------------------------
 
@@ -86,8 +110,10 @@ CREATE TABLE `utilizador` (
 
 INSERT INTO `utilizador` (`id_utilizador`, `nome`, `password`, `morada`, `email`, `telemovel`, `tipo_utilizador`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'dasdasda', 'ola@gmail.com', 0, 3),
-(2, 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 'aluno', 'aluno@gmail.com', 123456789, 1),
-(18, 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 'dasd', 'dasdasdas@gmail.com', 321, 2);
+(2, 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 'olaaaaa', 'aluno@gmail.com', 123456789, 1),
+(18, 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 'dasd', 'dasdasdas@gmail.com', 321, 2),
+(19, 'docente1', '085a4315b710361139bef0018d90ac48', 'dsada', '35221@gmail.com', 321, 2),
+(20, 'teste', '202cb962ac59075b964b07152d234b70', 'dsa', '35221@gmail.com', 231312, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -127,13 +153,13 @@ ALTER TABLE `utilizador`
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_curso` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_utilizador` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_utilizador` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para despejos de tabelas
