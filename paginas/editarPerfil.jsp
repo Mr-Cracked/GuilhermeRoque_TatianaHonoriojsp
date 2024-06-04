@@ -10,10 +10,10 @@
         PreparedStatement stmt = null;
 
             boolean existepass = false;
-            String password = "";
-            if (request.getParameter("password") != null && !request.getParameter("password").isEmpty()) {
+            String pass = "";
+            if (request.getParameter("pass") != null && !request.getParameter("pass").isEmpty()) {
                 existepass = true;
-                password = request.getParameter("password");
+                pass = request.getParameter("pass");
             }
 
             String email = request.getParameter("email");
@@ -25,10 +25,10 @@
             String sql = "";
 
             if (existepass) {
-                sql = "UPDATE utilizador SET nome=?, password=(?), email=?, telemovel=?, morada=? WHERE id_utilizador=?";
+                sql = "UPDATE utilizador SET nome=?, pass=(?), email=?, telemovel=?, morada=? WHERE id_utilizador=?";
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, nome);
-                stmt.setString(2, password);
+                stmt.setString(2, pass);
                 stmt.setString(3, email);
                 stmt.setInt(4, telemovel);
                 stmt.setString(5, morada);
@@ -53,6 +53,7 @@
                 session.setAttribute("email", email);
                 session.setAttribute("telemovel", telemovel);
                 session.setAttribute("morada", morada);
+                session.setAttribute("nome", nome);
 
                 
                 out.println("<link rel=\"stylesheet\" href=\"bootstrap.css\">");

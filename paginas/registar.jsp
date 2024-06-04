@@ -17,12 +17,12 @@ if (session.getAttribute("tipo_utilizador") == null || Integer.parseInt(session.
     }else{
         String nivel = request.getParameter("nivelacesso");
         String nome = request.getParameter("username");
-        String password = request.getParameter("password"); 
+        String pass = request.getParameter("pass"); 
         String email = request.getParameter("email");
         Integer telemovel = Integer.parseInt(request.getParameter("telemovel"));
         String morada = request.getParameter("morada");
 
-        String password_encriptada = Encriptar(password);
+        String pass_encriptada = Encriptar(pass);
         
         stmt = conn.createStatement();
         result = stmt.executeQuery("SELECT * FROM utilizador WHERE nome='" + nome + "'");
@@ -43,7 +43,7 @@ if (session.getAttribute("tipo_utilizador") == null || Integer.parseInt(session.
         } else {
             if (nivel == null || nivel.isEmpty()) {
 
-                int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (nome, password, email, telemovel, morada) VALUES ('" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
+                int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (nome, pass, email, telemovel, morada) VALUES ('" + nome + "', '" + pass_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                 
                 if (rowsAffected > 0) {
@@ -59,7 +59,7 @@ if (session.getAttribute("tipo_utilizador") == null || Integer.parseInt(session.
                 }
             } else {
                 
-                int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (tipo_utilizador, nome, password, email, telemovel, morada) VALUES ('" + nivel + "', '" + nome + "', '" + password_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
+                int rowsAffected = stmt.executeUpdate("INSERT INTO utilizador (tipo_utilizador, nome, pass, email, telemovel, morada) VALUES ('" + nivel + "', '" + nome + "', '" + pass_encriptada + "', '" + email + "', '" + telemovel + "', '" + morada + "')");
 
                 
                 if (rowsAffected > 0) {

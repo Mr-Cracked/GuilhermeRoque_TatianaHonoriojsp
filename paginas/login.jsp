@@ -9,13 +9,13 @@
     if(session.getAttribute("tipo_utilizador") == null){
 
     String nome = request.getParameter("username");
-    String password = request.getParameter("password"); // A senha ainda não está encriptada
+    String pass = request.getParameter("pass"); // A senha ainda não está encriptada
 
-    String pass_encriptada = Encriptar(password);
+    String pass_encriptada = Encriptar(pass);
 
 
     Statement stmt = conn.createStatement();
-    String sql = "SELECT * FROM utilizador WHERE nome='" + nome + "' AND password='" + pass_encriptada + "'";
+    String sql = "SELECT * FROM utilizador WHERE nome='" + nome + "' AND pass='" + pass_encriptada + "'";
     ResultSet rs = stmt.executeQuery(sql);
 
     if (!rs.next()) {
@@ -37,7 +37,7 @@
             session.setAttribute("email", rs.getString("email"));
             session.setAttribute("telemovel", rs.getString("telemovel"));
             session.setAttribute("morada", rs.getString("morada"));
-            session.setAttribute("password", pass_encriptada);
+            session.setAttribute("pass", pass_encriptada);
 
 
             response.sendRedirect("perfil.jsp");

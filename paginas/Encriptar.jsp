@@ -5,13 +5,13 @@
 <%@ page import="java.security.NoSuchAlgorithmException" %>
 <%!
 
-    public String Encriptar(String password)
+    public String Encriptar(String pass)
     {
         try{
 
             MessageDigest md = MessageDigest.getInstance("MD5");
 
-            byte[] passBytes = password.getBytes(StandardCharsets.UTF_8);
+            byte[] passBytes = pass.getBytes(StandardCharsets.UTF_8);
             byte[] passHash = md.digest(passBytes);
             
             StringBuilder stringbuilder = new StringBuilder();

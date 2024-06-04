@@ -79,7 +79,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                     <br>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="text" class="form-control" name="password" value="">
+                        <input type="text" class="form-control" name="pass" value="">
                     </div>
                     <br>
                     <div class="form-group">

@@ -35,7 +35,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
 
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="text" class="form-control" name="password" value="" readonly disabled>
+                        <input type="text" class="form-control" name="pass" value="" readonly disabled>
                     </div>
                     <br>
 

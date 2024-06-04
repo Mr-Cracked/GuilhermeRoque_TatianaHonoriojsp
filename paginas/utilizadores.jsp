@@ -66,7 +66,7 @@ result = stmt.executeQuery(sql);
                             <tr class="table-active">
                                 <th scope="row"><%= result.getInt("tipo_utilizador") %></th>
                                 <td><%= result.getString("nome") %></td>
-                                <td><%= result.getString("password") %></td>
+                                <td><%= result.getString("pass") %></td>
                                 <td><%= result.getString("morada") %></td>
                                 <td><%= result.getString("email") %></td>
                                 <td><%= result.getString("telemovel") %></td>

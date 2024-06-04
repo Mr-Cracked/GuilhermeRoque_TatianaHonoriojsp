@@ -10,7 +10,7 @@
 if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) == 3) {
     boolean existepass = false;
     String senha_encriptada = "";
-    if (request.getParameter("password") != null && !request.getParameter("password").isEmpty()) {
+    if (request.getParameter("pass") != null && !request.getParameter("pass").isEmpty()) {
         existepass = true;
         
     }
@@ -32,9 +32,9 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
          morada = request.getParameter("morada");
          nome = request.getParameter("nome");
          
-        if (request.getParameter("password") != null && !request.getParameter("password").isEmpty()) {
+        if (request.getParameter("pass") != null && !request.getParameter("pass").isEmpty()) {
             existepass = true;
-            senha_encriptada = Encriptar(request.getParameter("password"));
+            senha_encriptada = Encriptar(request.getParameter("pass"));
         }
 
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM utilizador WHERE nome = ?");
@@ -56,7 +56,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
             int result = 0;
             if (existepass) {
                 
-                pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, password=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
+                pstmt = conn.prepareStatement("UPDATE utilizador SET nome=?, pass=?, email=?, telemovel=?, morada=?, tipo_utilizador=? WHERE id_utilizador=?");
                 pstmt.setString(1, nome);
                 pstmt.setString(2, senha_encriptada);
                 pstmt.setString(3, email);
