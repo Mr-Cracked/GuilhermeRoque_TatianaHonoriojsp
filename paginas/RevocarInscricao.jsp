@@ -14,11 +14,11 @@
 
             stmt = conn.createStatement();
 
-            String sql = "UPDATE inscricao SET estado = 1 WHERE id_utilizador = '" + id + "' AND id_curso = '" + idCurso + "'";
+            String sql = "UPDATE inscricao SET estado = 0 WHERE id_utilizador = '" + id + "' AND id_curso = '" + idCurso + "'";
             int result = stmt.executeUpdate(sql);
 
             if (result > 0) {
-                sql = "UPDATE curso SET vagas_preenchidas = vagas_preenchidas + 1 WHERE id_curso = '" + idCurso + "'";
+                sql = "UPDATE curso SET vagas_preenchidas = vagas_preenchidas - 1 WHERE id_curso = '" + idCurso + "'";
                 result = stmt.executeUpdate(sql);
 
                 if (result > 0) {
@@ -30,19 +30,19 @@
                     out.print("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
                     out.print("<div class=\"alert alert-dismissible alert-danger\">");
                     out.print("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\"></button>");
-                    out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Aceitar!!!</a></div>");
+                    out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Revocar!!!</a></div>");
                 }
             } else {
                 out.print("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
                 out.print("<div class=\"alert alert-dismissible alert-danger\">");
                 out.print("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\"></button>");
-                out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Aceitar!!!</a></div>");
+                out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Revocar!!!</a></div>");
             }
         } else {
             out.print("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
             out.print("<div class=\"alert alert-dismissible alert-danger\">");
             out.print("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\"></button>");
-            out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Aceitar!!!</a></div>");
+            out.print("<strong></strong> <a href=\"cursos.jsp\" class=\"alert-link\">Erro ao Revocar!!!</a></div>");
         }
     } else {
         response.sendRedirect("Erro.jsp");

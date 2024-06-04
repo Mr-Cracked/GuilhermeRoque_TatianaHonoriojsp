@@ -4,6 +4,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
+<% if (session.getAttribute("tipo_utilizador") != null && (int)session.getAttribute("tipo_utilizador") == 3) { %>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,6 @@
                         </div>
                     </div>
                 </form>
-                <% if (session.getAttribute("tipo_utilizador") != null && (int)session.getAttribute("tipo_utilizador") == 3) { %>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -33,7 +33,7 @@
                                 <th scope="col">Nome do Curso</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Estado</th>
-                                <th scope="col">Aceitar</th>
+                                <th scope="col">Ação</th>
                                 <th scope="col">Eliminar</th>
                                 <th scope="col">Visualizar</th>
                             </tr>
@@ -45,14 +45,14 @@
                                 String sql = "";
 
                                 if (request.getParameter("id") != null) {
-                                    sql = "SELECT i.id_utilizador, u.nome AS nome_aluno, c.id_curso, c.nome AS nome_curso, c.descricao, i.estado " +
+                                    sql = "SELECT i.id_utilizador, u.nome AS nome_aluno, c.id_curso, c.nome AS nome_curso, i.descricao, i.estado " +
                                           "FROM inscricao i " +
                                           "INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador " +
                                           "INNER JOIN curso c ON i.id_curso = c.id_curso " +
                                           "WHERE i.id_curso = '" + request.getParameter("id") + "' " +
                                           searchQuery;
                                 } else {
-                                    sql = "SELECT i.id_utilizador, u.nome AS nome_aluno, c.id_curso, c.nome AS nome_curso, c.descricao, i.estado " +
+                                    sql = "SELECT i.id_utilizador, u.nome AS nome_aluno, c.id_curso, c.nome AS nome_curso, i.descricao, i.estado " +
                                           "FROM inscricao i " +
                                           "INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador " +
                                           "INNER JOIN curso c ON i.id_curso = c.id_curso " +
@@ -71,9 +71,19 @@
                                 <td><%= rs.getString("nome_curso") %></td>
                                 <td><%= rs.getString("descricao") %></td>
                                 <td><%= rs.getString("estado") %></td>
-                                <td><a href="aceitarInscricao.jsp?id=<%= rs.getString("id_utilizador") %>&id_curso=<%= rs.getString("id_curso") %>">Aceitar</a></td>
-                                <td><a href="eliminarInscricao.jsp?id=<%= rs.getString("id_utilizador") %>&id_curso=<%= rs.getString("id_curso") %>">Eliminar</a></td>
-                                <td><a href="visualizarInscricao.jsp?id=<%= rs.getString("id_utilizador") %>&id_curso=<%= rs.getString("id_curso") %>">Visualizar</a></td>
+                                <%
+                                if(Integer.parseInt(rs.getString("estado").toString()) == 0){
+                                %>
+                                <td><a href="aceitarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Aceitar</a></td>
+                                <%
+                                }else{
+                                    %>
+                                    <td><a href="RevocarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Revocar</a></td>
+                                    <%
+                                }
+                                %>
+                                <td><a href="eliminarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Eliminar</a></td>
+                                <td><a href="visualizarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Visualizar</a></td>
                             </tr>
                             <%
                                 }
