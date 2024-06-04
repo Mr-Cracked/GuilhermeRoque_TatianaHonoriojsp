@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Maio-2024 às 14:52
+-- Tempo de geração: 04-Jun-2024 às 18:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -45,7 +45,7 @@ CREATE TABLE `curso` (
 --
 
 INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `vagas`, `vagas_preenchidas`, `data_inicio`, `data_fim`, `metodo_selecao`) VALUES
-(36, 'dsadsad', 'dsada', 21, 0, '2024-04-28', '2024-05-25', 'dasdadas'),
+(36, 'dsadsad', 'dsada', 21, 2, '2024-04-28', '2024-05-25', 'dasdadas'),
 (37, 'Teste123', 'dasdas', 312, 0, '2024-05-01', '2024-05-25', 'dsada');
 
 -- --------------------------------------------------------
@@ -66,7 +66,8 @@ CREATE TABLE `inscricao` (
 --
 
 INSERT INTO `inscricao` (`id_utilizador`, `id_curso`, `descricao`, `estado`) VALUES
-(2, 36, 'fsdfs', 0);
+(2, 37, 'sda', 0),
+(24, 36, 'csca', 1);
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE `leciona` (
 
 INSERT INTO `leciona` (`id_utilizador`, `id_curso`) VALUES
 (18, 36),
-(19, 36),
+(20, 36),
 (20, 37);
 
 -- --------------------------------------------------------
@@ -97,7 +98,7 @@ INSERT INTO `leciona` (`id_utilizador`, `id_curso`) VALUES
 CREATE TABLE `utilizador` (
   `id_utilizador` int(40) NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
   `morada` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `telemovel` int(10) NOT NULL,
@@ -108,12 +109,14 @@ CREATE TABLE `utilizador` (
 -- Extraindo dados da tabela `utilizador`
 --
 
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `password`, `morada`, `email`, `telemovel`, `tipo_utilizador`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'dasdasda', 'ola@gmail.com', 0, 3),
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `pass`, `morada`, `email`, `telemovel`, `tipo_utilizador`) VALUES
+(1, '123', '21232f297a57a5a743894a0e4a801fc3', '123', '35221@gmail.com', 123134, -1),
 (2, 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 'olaaaaa', 'aluno@gmail.com', 123456789, 1),
 (18, 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 'dasd', 'dasdasdas@gmail.com', 321, 2),
-(19, 'docente1', '085a4315b710361139bef0018d90ac48', 'dsada', '35221@gmail.com', 321, 2),
-(20, 'teste', '202cb962ac59075b964b07152d234b70', 'dsa', '35221@gmail.com', 231312, 2);
+(19, 'docente1', '085a4315b710361139bef0018d90ac48', 'dsada', '35221@gmail.com', 321, 1),
+(20, 'teste', '202cb962ac59075b964b07152d234b70', 'dsa', '35221@gmail.com', 231312, 2),
+(23, 'admin', '21232f297a57a5a743894a0e4a801fc3', '123', '35221@gmail.com', 2145145, 3),
+(24, 'xpto', '3851b1ae73ca0ca6e3c24a0256a80ace', 'olaaa', 'testex@gmac.com', 2352525, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -159,7 +162,7 @@ ALTER TABLE `curso`
 -- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_utilizador` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_utilizador` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restrições para despejos de tabelas
