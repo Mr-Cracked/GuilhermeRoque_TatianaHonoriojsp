@@ -59,7 +59,7 @@
                 out.println("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
                 out.println("<div class=\"alert alert-dismissible alert-success\">");
                 out.println("<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\"></button>");
-                out.println("<strong></strong> <a href=\"editarPerfilformulario.jsp\" class=\"alert-link\">Sucesso!!!</a>");
+                out.println("<strong></strong> <a href=\"perfil.jsp\" class=\"alert-link\">Sucesso!!!</a>");
                 out.println("</div>");
             } else {
                
