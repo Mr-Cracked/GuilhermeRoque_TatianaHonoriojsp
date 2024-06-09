@@ -35,6 +35,7 @@
                                 <th scope="col">Estado</th>
                                 <th scope="col">Ação</th>
                                 <th scope="col">Eliminar</th>
+                                <th scope="col">Editar</th>
                                 <th scope="col">Visualizar</th>
                             </tr>
                         </thead>
@@ -83,6 +84,7 @@
                                 }
                                 %>
                                 <td><a href="eliminarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Eliminar</a></td>
+                                <td><a href="editarInscricaoformulario.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Editar</a></td>
                                 <td><a href="visualizarInscricao.jsp?id=<%= rs.getInt("id_utilizador") %>&id_curso=<%= rs.getInt("id_curso") %>">Visualizar</a></td>
                             </tr>
                             <%
