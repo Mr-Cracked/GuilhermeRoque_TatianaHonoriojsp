@@ -20,7 +20,7 @@
                 <label for="Erro">Por favor volte à página inicial</label> <br> 
                 <%
                 %>
-                    <a type="button" class="btn btn-primary" href="index.php">Voltar</button></a>
+                    <a type="button" class="btn btn-primary" href="index.jsp">Voltar</button></a>
                 <%
                 %>
                 

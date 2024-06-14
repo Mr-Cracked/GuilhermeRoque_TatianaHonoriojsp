@@ -13,7 +13,7 @@
         String datafimStr = request.getParameter("datafim");
         String metodo = request.getParameter("metodo");
 
-        // Convertendo as datas de String para java.sql.Date
+        // Converte as datas de String para java.sql.Date
         java.sql.Date datainic = java.sql.Date.valueOf(datainicStr);
         java.sql.Date datafim = java.sql.Date.valueOf(datafimStr);
 

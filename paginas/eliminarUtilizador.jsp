@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <%@ include file="../basedados/basedados.h" %>
 
 <%
@@ -7,6 +9,11 @@
         String id = request.getParameter("id");
 
         if (id != null) {
+            String query = "SELECT id_curso, COUNT(id_curso) as inscricoes FROM inscricao WHERE id_utilizador = ? AND estado = 1 GROUP BY id_curso";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, Integer.parseInt(id));
+            ResultSet rs = pstmt.executeQuery();
+
             String sql = "DELETE FROM utilizador WHERE id_utilizador = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, Integer.parseInt(id));
@@ -14,19 +21,18 @@
 
             if (result > 0) {
 
-                String query = "SELECT id_curso, COUNT(id_curso) as vagas_preenchidas FROM inscricao GROUP BY id_curso";
-                ResultSet rs = pstmt.executeQuery(query);
+                
 
        
             while (rs.next()) {
                 int id_curso = Integer.parseInt(rs.getString("id_curso"));
-                int vagas_preenchidas = Integer.parseInt(rs.getString("vagas_preenchidas"));
-                if (vagas_preenchidas == 0) {
-                    vagas_preenchidas = 0;
+                int inscricoes = Integer.parseInt(rs.getString("inscricoes"));
+                if (inscricoes == 0) {
+                    inscricoes = 0;
                 }
-                String updateQuery = "UPDATE curso SET vagas_preenchidas = ? WHERE id_curso = ?";
+                String updateQuery = "UPDATE curso SET vagas_preenchidas = vagas_preenchidas - ? WHERE id_curso = ?";
                 pstmt = conn.prepareStatement(updateQuery);
-                pstmt.setInt(1, vagas_preenchidas);
+                pstmt.setInt(1, inscricoes);
                 pstmt.setInt(2, id_curso);
                 pstmt.executeUpdate();
             }

@@ -42,10 +42,7 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
 
         ResultSet resultado = pstmt.executeQuery();
         int linhasafetadas = 0;
-        while(resultado.next()){
-            linhasafetadas= linhasafetadas + 1;
-        }
-        if(linhasafetadas > 1)
+        if(resultado.next())
         {
             out.println("<link rel=\"stylesheet\" href=\"bootstrap.css\">");
             out.println("<div class=\"alert alert-dismissible alert-danger\">");
