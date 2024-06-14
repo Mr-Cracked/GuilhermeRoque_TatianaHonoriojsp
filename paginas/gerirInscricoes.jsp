@@ -89,12 +89,10 @@
                             </tr>
                             <%
                                 }
-                                rs.close();
-                                stmt.close();
-                                conn.close();
                             %>
                         </tbody>
                     </table>
+                    <a type="button" class="btn btn-primary" href="adicionarInscricaoFormulario.jsp">Adicionar</button></a>
                 <% } else {
                     response.sendRedirect("Erro.jsp");
                 } %>

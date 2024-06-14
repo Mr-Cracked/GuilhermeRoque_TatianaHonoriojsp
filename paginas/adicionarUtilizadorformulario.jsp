@@ -25,7 +25,6 @@
                             <%
                                 // Definir opções do nível de acesso em um array
                                 String[][] opcoesNivelAcesso = {
-                                    {"-1", "Eliminado"},
                                     {"0", "Por aceitar"},
                                     {"1", "Aluno"},
                                     {"2", "Docente"},

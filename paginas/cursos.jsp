@@ -45,12 +45,15 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                         Statement stmt = null;
                         ResultSet rs = null;
 
-                        String search = request.getParameter("search") != null ? request.getParameter("search") : "";
-                        String searchQuery = !search.isEmpty() ? "WHERE nome LIKE '%" + search + "%'" : "";
+                        
 
                             stmt = conn.createStatement();
-                            String sql = "SELECT * FROM curso " + searchQuery;
+                            String sql = "SELECT * FROM curso";
+
+                            String search = request.getParameter("search") != null ? request.getParameter("search") : "";
+                            sql += !search.isEmpty() ? " WHERE nome LIKE '%" + search + "%'" : "";
                             rs = stmt.executeQuery(sql);
+
 
                             while (rs.next()) {
                         %>
@@ -78,6 +81,14 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded " style="margin-top: 20px;">
             <div class="card-body">
+                <form method="GET" action="">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" placeholder="Pesquisar Cursos" value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                    </div>
+                </div>
+                </form>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -95,7 +106,10 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
                         ResultSet rs = null;
 
                         stmt = conn.createStatement();
-                        String sql = "SELECT * FROM curso";
+                        String sql = "SELECT * FROM curso WHERE vagas_preenchidas < vagas";
+
+                        String search = request.getParameter("search") != null ? request.getParameter("search") : "";
+                        sql += !search.isEmpty() ? " AND nome LIKE '%" + search + "%'" : "";
                         rs = stmt.executeQuery(sql);
 
                         while (rs.next()) {

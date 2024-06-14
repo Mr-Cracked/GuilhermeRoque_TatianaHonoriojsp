@@ -4,7 +4,7 @@
 <%@ include file="../basedados/basedados.h" %>
 
 <%
-    if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) >= 1) {
+    if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.getAttribute("tipo_utilizador").toString()) ==3) {
         
         String id_curso = request.getParameter("id_curso");
         String descricao = request.getParameter("descricao");
