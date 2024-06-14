@@ -37,8 +37,9 @@ if (session.getAttribute("tipo_utilizador") != null && Integer.parseInt(session.
             senha_encriptada = Encriptar(request.getParameter("pass"));
         }
 
-        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM utilizador WHERE nome = ?");
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM utilizador WHERE nome = ? AND id_utilizador != ?");
         pstmt.setString(1, nome);
+        pstmt.setInt(2, id_utilizador);
 
         ResultSet resultado = pstmt.executeQuery();
         int linhasafetadas = 0;

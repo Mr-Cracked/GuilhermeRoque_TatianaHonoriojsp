@@ -22,7 +22,7 @@
         String nome = request.getParameter("username");
 
         Statement stmt_nomes = conn.createStatement();
-        ResultSet result_nomes = stmt_nomes.executeQuery("SELECT * FROM utilizador WHERE nome='" + nome + "'");
+        ResultSet result_nomes = stmt_nomes.executeQuery("SELECT * FROM utilizador WHERE nome='" + nome + "' AND id_utilizador !='" + request.getParameter("id_utilizador") + "'");
 
        
 
